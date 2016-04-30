@@ -49,20 +49,20 @@ public class WebAccountsController {
 	public String byNumber(Model model,
 			@PathVariable("accountNumber") String accountNumber) {
 
-		logger.info("web-service byNumber() invoked: " + accountNumber);
+		logger.finer("web-service byNumber() invoked: " + accountNumber);
 
 		Account account = accountsService.findByNumber(accountNumber);
-		logger.info("web-service byNumber() found: " + account);
+		logger.finer("web-service byNumber() found: " + account);
 		model.addAttribute("account", account);
 		return "account";
 	}
 
 	@RequestMapping("/accounts/owner/{text}")
 	public String ownerSearch(Model model, @PathVariable("text") String name) {
-		logger.info("web-service byOwner() invoked: " + name);
+		logger.finer("web-service byOwner() invoked: " + name);
 
 		List<Account> accounts = accountsService.byOwnerContains(name);
-		logger.info("web-service byOwner() found: " + accounts);
+		logger.finer("web-service byOwner() found: " + accounts);
 		model.addAttribute("search", name);
 		if (accounts != null)
 			model.addAttribute("accounts", accounts);
@@ -78,7 +78,7 @@ public class WebAccountsController {
 	@RequestMapping(value = "/accounts/dosearch")
 	public String doSearch(Model model, SearchCriteria criteria,
 			BindingResult result) {
-		logger.info("web-service search() invoked: " + criteria);
+		logger.finer("web-service search() invoked: " + criteria);
 
 		criteria.validate(result);
 

@@ -46,9 +46,9 @@ public class AccountsController {
 	@RequestMapping("/accounts/{accountNumber}")
 	public Account byNumber(@PathVariable("accountNumber") String accountNumber) {
 
-		logger.info("accounts-service byNumber() invoked: " + accountNumber);
+		logger.finer("accounts-service byNumber() invoked: " + accountNumber);
 		Account account = accountRepository.findByNumber(accountNumber);
-		logger.info("accounts-service byNumber() found: " + account);
+		logger.finer("accounts-service byNumber() found: " + account);
 
 		if (account == null)
 			throw new AccountNotFoundException(accountNumber);
@@ -69,13 +69,13 @@ public class AccountsController {
 	 */
 	@RequestMapping("/accounts/owner/{name}")
 	public List<Account> byOwner(@PathVariable("name") String partialName) {
-		logger.info("accounts-service byOwner() invoked: "
+		logger.finer("accounts-service byOwner() invoked: "
 				+ accountRepository.getClass().getName() + " for "
 				+ partialName);
 
 		List<Account> accounts = accountRepository
 				.findByOwnerContainingIgnoreCase(partialName);
-		logger.info("accounts-service byOwner() found: " + accounts);
+		logger.finer("accounts-service byOwner() found: " + accounts);
 
 		if (accounts == null || accounts.size() == 0)
 			throw new AccountNotFoundException(partialName);

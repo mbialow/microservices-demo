@@ -49,13 +49,13 @@ public class WebAccountsService {
 
 	public Account findByNumber(String accountNumber) {
 
-		logger.info("findByNumber() invoked: for " + accountNumber);
+		logger.finer("findByNumber() invoked: for " + accountNumber);
 		return restTemplate.getForObject(serviceUrl + "/accounts/{number}",
 				Account.class, accountNumber);
 	}
 
 	public List<Account> byOwnerContains(String name) {
-		logger.info("byOwnerContains() invoked:  for " + name);
+		logger.finer("byOwnerContains() invoked:  for " + name);
 		Account[] accounts = null;
 
 		try {
